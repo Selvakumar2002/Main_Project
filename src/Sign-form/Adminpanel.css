@@ -1,0 +1,13 @@
+/* AdminPanel.css */
+.admin-panel {
+  display: flex;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}

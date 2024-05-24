@@ -1,0 +1,49 @@
+const mongoose = require('mongoose');
+
+const Registerform = new mongoose.Schema({
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: {
+      validator: (value) => {
+        // Validate email format
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(value);
+      },
+      message: 'Please enter a valid email address.'
+    }
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 6
+  },
+  mobileNumber: {
+    type: String,
+    required: true,
+    validate: {
+      validator: (value) => {
+        // Validate mobile number format
+        const regex = /^\d{10}$/;
+        return regex.test(value);
+      },
+      message: 'Please enter a valid 10-digit mobile number.'
+    }
+  }
+});
+
+
+
+
+const Register =mongoose.model('User', Registerform);
+
+module.exports = Register;
